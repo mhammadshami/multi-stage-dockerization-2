@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  #MongoDB
+  mongo_db:
+    container_name: database_container
+    image: mongo:latest
+    restart: always
+
+  app:
+    container_name: express-node-app-container
+    ports:
+      - 3000:3000
+    env_file:
+      - ./.env
+    depends_on:
+      - mongo_db
